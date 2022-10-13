@@ -1,9 +1,9 @@
 const googleTrends = require('google-trends-api');
 
-exports.interestOverTimeKeyword = async (req, res) => {
+exports.interestByRegionKeyword = async (req, res) => {
     try{
         const {keyword} = req.params;
-        googleTrends.interestOverTime({keyword: keyword, geo:"US"})
+        googleTrends.interestByRegion({keyword: keyword, geo:"US"})
         .then((data) => {
             res.send(data);
         })
@@ -16,12 +16,12 @@ exports.interestOverTimeKeyword = async (req, res) => {
     }
 }
 
-exports.interestOverTimeKeywordPast12M = async (req, res) => {
+exports.interestByRegionKeywordPast12M = async (req, res) => {
     try{
         const {keyword} = req.params;
         let time2 = new Date();
         let time1 = new Date(time2.getFullYear()-1, time2.getMonth(), time2.getDate());
-        googleTrends.interestOverTime({keyword: keyword, startTime:time1, endTime:time2, geo:"US"})
+        googleTrends.interestByRegion({keyword: keyword, startTime:time1, endTime:time2, geo:"US"})
         .then((data) => {
             res.send(data);
             // console.log(data);
@@ -35,12 +35,12 @@ exports.interestOverTimeKeywordPast12M = async (req, res) => {
     }
 }
 
-exports.interestOverTimeKeywordCustomDates = async (req, res) => {
+exports.interestByRegionKeywordCustomDates = async (req, res) => {
     try{
         const {keyword, fromDY, fromDM, fromDD, toDY, toDM, toDD} = req.params;
         let time1 = new Date(fromDY, fromDM, fromDD);
         let time2 = new Date(toDY, toDM, toDD);
-        googleTrends.interestOverTime({keyword: keyword, startTime:time1, endTime:time2, geo:"US"})
+        googleTrends.interestByRegion({keyword: keyword, startTime:time1, endTime:time2, geo:"US"})
         .then((data) => {
             res.send(data);
             // console.log(data);
