@@ -6,7 +6,7 @@ exports.interestOverTimeKeyword = async (req, res) => {
     const {keyword} = req.params;
     googleTrends.interestOverTime({keyword: keyword, geo:"US"})
     .then((data) => {
-        res.json(data);
+        res.send(data);
         // console.log(data);
     })
     .catch((err) => {
