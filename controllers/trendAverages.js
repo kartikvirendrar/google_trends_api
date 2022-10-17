@@ -14,7 +14,7 @@ exports.trendAverages = async (req, res) => {
             .then((data) => {
                 let jsonData = JSON.parse(data);
                 let temp = jsonData.default.averages;
-                console.log(temp);
+                // console.log(temp);
                 temp.pop();
                 temp.forEach(element => {
                     outputArray.push(element);                      
